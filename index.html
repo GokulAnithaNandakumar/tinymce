@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tiny.cloud/1/ew9h8ch8x8ulxeykcrdi9ne89kq16h3p5szkrgvywtz4mmdk/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+  <title>ResQAI - Feedback</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <textarea id="myTextarea" placeholder="Enter your feedback"></textarea>
+    <button onclick="appendContent()">Append Content</button>
+  
+    <div id="appendedContent"></div>
+  
+    <script>
+      tinymce.init({
+        selector: '#myTextarea',
+        height: 500,
+        plugins: [
+          'advlist autolink lists link image charmap print preview anchor',
+          'searchreplace visualblocks code fullscreen',
+          'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar: 'undo redo | formatselect | ' +
+          'bold italic backcolor | alignleft aligncenter ' +
+          'alignright alignjustify | bullist numlist outdent indent | ' +
+          'removeformat | help'
+      });
+  
+      function appendContent() {
+        // Get the content of the TinyMCE editor
+        var content = tinymce.get('myTextarea').getContent();
+  
+        // Create a new div and append the content
+        var newDiv = document.createElement('div');
+        newDiv.innerHTML = content;
+  
+        // Append the new div to the container div
+        document.getElementById('appendedContent').appendChild(newDiv);
+  
+        // Clear the content of the TinyMCE editor
+        tinymce.get('myTextarea').setContent('');
+      }
+    </script>
+  
+  </body>
+</html>
